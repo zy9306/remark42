@@ -487,7 +487,7 @@ export class Comment extends Component<CommentProps, State> {
               copied={state.isCopied}
               editing={isEditing}
               replying={isReplying}
-              editable={props.repliesCount === 0 && state.editDeadline !== undefined}
+              editable={isAdmin || (props.repliesCount === 0 && state.editDeadline !== undefined)}
               editDeadline={state.editDeadline}
               readOnly={props.post_info?.read_only}
               onToggleReplying={this.toggleReplying}
@@ -533,7 +533,7 @@ export class Comment extends Component<CommentProps, State> {
             onSubmit={(text: string) => this.updateComment(props.data.id, text)}
             onCancel={this.toggleEditing}
             getPreview={this.props.getPreview!}
-            errorMessage={state.editDeadline === undefined ? intl.formatMessage(messages.expiredTime) : undefined}
+            errorMessage={!isAdmin && (state.editDeadline === undefined) ? intl.formatMessage(messages.expiredTime) : undefined}
             autofocus={true}
             uploadImage={uploadImageHandler}
           />
