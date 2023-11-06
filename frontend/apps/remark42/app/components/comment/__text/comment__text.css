@@ -2,3 +2,9 @@
   margin-bottom: 4px;
   overflow: hidden;
 }
+
+/* TODO 增加点击展开 */
+.comment__text {
+  max-height: 28em;
+  overflow: auto;
+}
